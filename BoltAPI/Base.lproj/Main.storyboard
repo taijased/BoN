@@ -24,11 +24,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rV-Fk-9nn">
-                                <rect key="frame" x="264" y="493" width="40" height="40"/>
+                                <rect key="frame" x="250" y="493" width="50" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Qo9-hj-rxR"/>
-                                    <constraint firstAttribute="width" constant="40" id="bdr-Up-pg7"/>
+                                    <constraint firstAttribute="height" constant="50" id="Qo9-hj-rxR"/>
+                                    <constraint firstAttribute="width" constant="50" id="bdr-Up-pg7"/>
                                 </constraints>
                                 <state key="normal" image="mark"/>
                                 <connections>
@@ -38,8 +38,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rV-Fk-9nn" secondAttribute="trailing" constant="16" id="eoQ-MC-gah"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2rV-Fk-9nn" secondAttribute="bottom" constant="35" id="woB-OW-JGj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rV-Fk-9nn" secondAttribute="trailing" constant="20" id="eoQ-MC-gah"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2rV-Fk-9nn" secondAttribute="bottom" constant="25" id="woB-OW-JGj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -84,7 +84,7 @@
                                     <constraint firstAttribute="height" constant="48" id="ouE-aD-UhU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TTNorms-Bold" family="TT Norms" pointSize="40"/>
-                                <color key="textColor" red="0.24313725489999999" green="0.27058823529999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkf-aR-O2t">
@@ -101,11 +101,11 @@
                                     <constraint firstAttribute="height" constant="48" id="TYB-t7-qlP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TTNorms-Bold" family="TT Norms" pointSize="40"/>
-                                <color key="textColor" red="0.24313725489999999" green="0.27058823529999998" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.53725490200000003" green="0.84313725490000002" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="57e-be-51x" firstAttribute="trailing" secondItem="EHj-J9-epA" secondAttribute="trailing" constant="16" id="0aS-zD-MYo"/>
                             <constraint firstItem="EHj-J9-epA" firstAttribute="centerX" secondItem="57e-be-51x" secondAttribute="centerX" id="2N9-JN-p5p"/>
@@ -124,6 +124,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="57e-be-51x"/>
                     </view>
+                    <connections>
+                        <outlet property="blueView" destination="EHj-J9-epA" id="pX6-8r-QkR"/>
+                        <outlet property="redView" destination="vkf-aR-O2t" id="oHj-oG-y9m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3l-1h-8er" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,6 +136,6 @@
     </scenes>
     <resources>
         <image name="close" width="52.5" height="52.5"/>
-        <image name="mark" width="21.5" height="21"/>
+        <image name="mark" width="24" height="24"/>
     </resources>
 </document>

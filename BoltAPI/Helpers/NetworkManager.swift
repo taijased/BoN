@@ -9,10 +9,8 @@
 import UIKit
 
 class NetworkManager {
-
-    static let hostName: String = "http://92.255.195.45:26005/bon"
     
-    static func uploadImage(imageProperties: ImageProperties, completion: @escaping (_ image: UIImage?, _ error: Bool)->()) {
+    func uploadImage(hostName: String, imageProperties: ImageProperties, completion: @escaping (_ image: UIImage?, _ error: Bool)->()) {
         
         guard let url = URL(string: hostName) else { completion(nil, true); return }
 

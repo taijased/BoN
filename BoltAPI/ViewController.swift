@@ -14,14 +14,17 @@ import UIKit
 
 class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializable{
     
+    
+    let networkManager = NetworkManager()
+    var hostName: String = "http://92.255.195.45:26005/bon"
+    
     @IBOutlet weak var infoButton: UIButton! {
         didSet {
-
             infoButton.layer.shadowColor = UIColor.black.cgColor
             infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             infoButton.layer.shadowRadius = 1.0
             infoButton.layer.shadowOpacity = 0.5
-            infoButton.layer.cornerRadius = 20
+            infoButton.layer.cornerRadius = 25
             infoButton.layer.masksToBounds = false
         }
     }
@@ -43,7 +46,7 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
     let myImageView: WebImageView = {
         let imageView = WebImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .redraw
+        imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 10
@@ -59,10 +62,17 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
         return button
     }()
     
+    let editButton: UIButton = {
+        let button = UIButton.getCustomtButton(imageName: "edit")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        button.backgroundColor = UIColor.white
+        return button
+    }()
+    
     let colorOne = UIColor(hexValue: "#E47470", alpha: 1)!.cgColor
     let colorTwo = UIColor(hexValue: "#7EC050", alpha: 1)!.cgColor
     let colorThree = UIColor(hexValue: "#3E45E5", alpha: 1)!.cgColor
-    
     let gradient = CAGradientLayer()
     var gradientSet = [[CGColor]]()
     var currentGradient: Int = 0
@@ -72,7 +82,6 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setupUI()
     }
     
@@ -83,7 +92,6 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
         let tap = UITapGestureRecognizer(target: self, action: #selector(chooseImageTapped(tapGestureRecognizer:)))
         myImageView.isUserInteractionEnabled = true
         myImageView.addGestureRecognizer(tap)
-        
     }
     
     private func setupUI() {
@@ -92,19 +100,19 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
         uploadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         uploadButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         uploadButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-//
-//        view.addSubview(infoButton)
-//        infoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35).isActive = true
-//        infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-//        infoButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-//        infoButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-//
+
+        view.addSubview(editButton)
+        editButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -25).isActive = true
+        editButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        editButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        editButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+
         
         view.addSubview(cardView)
-        cardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        cardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        cardView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        cardView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         
         cardView.addSubview(myImageView)
         myImageView.fillSuperview()
@@ -119,12 +127,32 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
         present(alert, animated: true)
     }
     
-    @objc func infoButtonTapped(_ sender: UIButton) {
-        sender.flash()
+    
+    
+    private func showAlertWithTextField() {
+        let alertController = UIAlertController(title: "Настройка веб сервиса", message: "Хотите изменить адрес веб сервера? Текущий адрес \(self.hostName)", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Изменить", style: .default) { (_) in
+            if let txtField = alertController.textFields?.first, let text = txtField.text {
+                self.hostName = text
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { (_) in }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "\(self.hostName)"
+        }
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
+    
+    @objc func editButtonTapped(_ sender: UIButton) {
+        sender.flash()
+        showAlertWithTextField()
+    }
+    
+    
     @objc func uploadButtonTapped(_ sender: UIButton) {
         sender.flash()
-        
         guard let image = myImageView.image,
             let imageProperties = ImageProperties(withImage: image, forKey: "image.jpg")
         else {
@@ -144,13 +172,17 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
         activityIndicator.color = UIColor(hexValue: "#3E45E5", alpha: 1)
         view.addSubview(activityIndicator)
       
-       
+        
         activityIndicator.startAnimating()
         UIApplication.shared.beginIgnoringInteractionEvents()
         
-        NetworkManager.uploadImage(imageProperties: imageProperties) {[weak self] (image, error) in
+        
+        networkManager.uploadImage(hostName: hostName, imageProperties: imageProperties) {[weak self] (image, error) in
             DispatchQueue.main.async {
                 if error {
+                    self?.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self?.blurEffectView.isHidden = true
                     self?.errorAlert("Упс! что то пошло не так!")
                     return
                 }

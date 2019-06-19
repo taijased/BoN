@@ -18,7 +18,7 @@ extension UIButton {
         button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
         button.layer.shadowRadius = 1.0
         button.layer.shadowOpacity = 0.5
-        button.layer.cornerRadius = 20
+        button.layer.cornerRadius = 25
         button.layer.masksToBounds = false
         return button
     }
