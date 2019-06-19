@@ -18,6 +18,9 @@
 		8AE2FB0522BA34C9009BB1F1 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0422BA34C9009BB1F1 /* Constraints.swift */; };
 		8AE2FB0722BA352A009BB1F1 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0622BA352A009BB1F1 /* WebImageView.swift */; };
 		8AE2FB0922BA358A009BB1F1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0822BA358A009BB1F1 /* NetworkManager.swift */; };
+		8AE2FB0B22BA36F7009BB1F1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0A22BA36F7009BB1F1 /* Model.swift */; };
+		8AE2FB0D22BA455F009BB1F1 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0C22BA455F009BB1F1 /* StoryboardInitializable.swift */; };
+		8AE2FB0F22BA4579009BB1F1 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0E22BA4579009BB1F1 /* InfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		8AE2FB0422BA34C9009BB1F1 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		8AE2FB0622BA352A009BB1F1 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
 		8AE2FB0822BA358A009BB1F1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8AE2FB0A22BA36F7009BB1F1 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8AE2FB0C22BA455F009BB1F1 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
+		8AE2FB0E22BA4579009BB1F1 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +74,13 @@
 			children = (
 				8A21153822B8F03900FDD25B /* AppDelegate.swift */,
 				8A21153A22B8F03900FDD25B /* ViewController.swift */,
+				8AE2FB0E22BA4579009BB1F1 /* InfoViewController.swift */,
 				8A21153C22B8F03900FDD25B /* Main.storyboard */,
 				8A21153F22B8F03A00FDD25B /* Assets.xcassets */,
 				8A21154122B8F03A00FDD25B /* LaunchScreen.storyboard */,
 				8A21154422B8F03A00FDD25B /* Info.plist */,
 				8AE2FB0122BA33F9009BB1F1 /* Helpers */,
+				8AE2FB0A22BA36F7009BB1F1 /* Model.swift */,
 			);
 			path = BoltAPI;
 			sourceTree = "<group>";
@@ -94,6 +102,7 @@
 				8AE2FB0422BA34C9009BB1F1 /* Constraints.swift */,
 				8AE2FB0622BA352A009BB1F1 /* WebImageView.swift */,
 				8AE2FB0822BA358A009BB1F1 /* NetworkManager.swift */,
+				8AE2FB0C22BA455F009BB1F1 /* StoryboardInitializable.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -171,8 +180,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AE2FB0B22BA36F7009BB1F1 /* Model.swift in Sources */,
 				8A21153B22B8F03900FDD25B /* ViewController.swift in Sources */,
+				8AE2FB0D22BA455F009BB1F1 /* StoryboardInitializable.swift in Sources */,
 				8AE2FB0722BA352A009BB1F1 /* WebImageView.swift in Sources */,
+				8AE2FB0F22BA4579009BB1F1 /* InfoViewController.swift in Sources */,
 				8AE2FB0922BA358A009BB1F1 /* NetworkManager.swift in Sources */,
 				8AE2FB0522BA34C9009BB1F1 /* Constraints.swift in Sources */,
 				8AE2FB0322BA3422009BB1F1 /* UIButton + Custom.swift in Sources */,

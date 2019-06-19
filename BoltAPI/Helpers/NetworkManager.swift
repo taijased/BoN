@@ -10,49 +10,37 @@ import UIKit
 
 class NetworkManager {
 
-    let hostName = ""
+    static let hostName: String = "http://92.255.195.45:26005/bon"
     
-    static func uploadImage(url: String, completion: @escaping (_ image: UIImage)->()) {
+    static func uploadImage(imageProperties: ImageProperties, completion: @escaping (_ image: UIImage?, _ error: Bool)->()) {
         
-        
-        let image = UIImage(named: "Notification")!
-        let httpHeaders = ["Authorization": "Client-ID 1bd22b9ce396a4c"]
-        guard let imageProperties = ImageProperties(withImage: image, forKey: "image") else { return }
-        
-        guard let url = URL(string: url) else { return }
-        
+        guard let url = URL(string: hostName) else { completion(nil, true); return }
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.allHTTPHeaderFields = httpHeaders
+        var boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         request.httpBody = imageProperties.data
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        var data = Data()
+        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"\(imageProperties.key)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
+        data.append(imageProperties.data)
+        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        URLSession.shared.uploadTask(with: request, from: data) { (data, response, error) in
+            if let error = error {
+                completion(nil, true)
+                return
+            }
             if let response = response {
                 print(response)
             }
-            
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                } catch {
-                    print(error)
-                }
+            if let data = data, let image = UIImage(data: data) {
+                completion(image, false)
             }
-            }.resume()
-        
+        }.resume()
     }
 }
 
-
-struct ImageProperties {
-    
-    let key: String
-    let data: Data
-    
-    init?(withImage image: UIImage, forKey key: String) {
-        self.key = key
-        guard let data = image.pngData() else { return nil }
-        self.data = data
-    }
-}

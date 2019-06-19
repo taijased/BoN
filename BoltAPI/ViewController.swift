@@ -8,8 +8,27 @@
 
 import UIKit
 
-class ViewController: UIViewController, CAAnimationDelegate {
+
+
+
+
+class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializable{
     
+    @IBOutlet weak var infoButton: UIButton! {
+        didSet {
+
+            infoButton.layer.shadowColor = UIColor.black.cgColor
+            infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            infoButton.layer.shadowRadius = 1.0
+            infoButton.layer.shadowOpacity = 0.5
+            infoButton.layer.cornerRadius = 20
+            infoButton.layer.masksToBounds = false
+        }
+    }
+    
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    let blurEffectView: UIVisualEffectView = UIVisualEffectView()
     let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -31,7 +50,6 @@ class ViewController: UIViewController, CAAnimationDelegate {
         return imageView
     }()
 
-    
     let uploadButton: UIButton = {
         let button = UIButton.getCustomtButton(imageName: "upload")
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -40,15 +58,6 @@ class ViewController: UIViewController, CAAnimationDelegate {
         button.backgroundColor = UIColor.white
         return button
     }()
-    
-    let infoButton: UIButton = {
-        let button = UIButton.getCustomtButton(imageName: "mark")
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(infoButtonTapped), for: .touchUpInside)
-        button.backgroundColor = UIColor.white
-        return button
-    }()
-
     
     let colorOne = UIColor(hexValue: "#E47470", alpha: 1)!.cgColor
     let colorTwo = UIColor(hexValue: "#7EC050", alpha: 1)!.cgColor
@@ -74,6 +83,7 @@ class ViewController: UIViewController, CAAnimationDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(chooseImageTapped(tapGestureRecognizer:)))
         myImageView.isUserInteractionEnabled = true
         myImageView.addGestureRecognizer(tap)
+        
     }
     
     private func setupUI() {
@@ -82,13 +92,13 @@ class ViewController: UIViewController, CAAnimationDelegate {
         uploadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         uploadButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
         uploadButton.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        
-        view.addSubview(infoButton)
-        infoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35).isActive = true
-        infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        infoButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        infoButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
+//
+//        view.addSubview(infoButton)
+//        infoButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -35).isActive = true
+//        infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+//        infoButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+//        infoButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//
         
         view.addSubview(cardView)
         cardView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
@@ -98,9 +108,9 @@ class ViewController: UIViewController, CAAnimationDelegate {
         
         cardView.addSubview(myImageView)
         myImageView.fillSuperview()
+        
     }
-    
-    
+
     
     private func errorAlert(_ message: String) {
         let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
@@ -111,7 +121,6 @@ class ViewController: UIViewController, CAAnimationDelegate {
     
     @objc func infoButtonTapped(_ sender: UIButton) {
         sender.flash()
-        
     }
     @objc func uploadButtonTapped(_ sender: UIButton) {
         sender.flash()
@@ -122,37 +131,37 @@ class ViewController: UIViewController, CAAnimationDelegate {
             errorAlert("Выберите изображение для распознавания болта или гайки!")
             return
         }
-        guard let url = URL(string: "http://92.255.195.45:46001/bon") else { return }
-//        guard let url = URL(string: "http://api.mmwro.revealyan.info/bon") else { return }
         
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        var boundary = UUID().uuidString
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        request.httpBody = imageProperties.data
- 
-        var data = Data()
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"\(imageProperties.key)\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-        data.append(imageProperties.data)
-        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
         
-        URLSession.shared.uploadTask(with: request, from: data) { (data, response, error) in
-            if let error = error {
-                self.errorAlert("Упс! Что то пошло не та :(")
-                print(error)
-                return
-            }
-            if let response = response {
-                print(response)
-            }
-            if let data = data, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.myImageView.image = image
+        blurEffectView.effect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.isHidden = false
+        view.addSubview(blurEffectView)
+        
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor(hexValue: "#3E45E5", alpha: 1)
+        view.addSubview(activityIndicator)
+      
+       
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        NetworkManager.uploadImage(imageProperties: imageProperties) {[weak self] (image, error) in
+            DispatchQueue.main.async {
+                if error {
+                    self?.errorAlert("Упс! что то пошло не так!")
+                    return
                 }
+                guard let image = image else{ return }
+                self?.activityIndicator.stopAnimating()
+                UIApplication.shared.endIgnoringInteractionEvents()
+                self?.blurEffectView.isHidden = true
+                self?.myImageView.image = image
             }
-        }.resume()
+        }
+
     }
     
     @objc func chooseImageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
