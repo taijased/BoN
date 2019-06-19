@@ -12,6 +12,12 @@
 		8A21153E22B8F03900FDD25B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A21153C22B8F03900FDD25B /* Main.storyboard */; };
 		8A21154022B8F03A00FDD25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A21153F22B8F03A00FDD25B /* Assets.xcassets */; };
 		8A21154322B8F03A00FDD25B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A21154122B8F03A00FDD25B /* LaunchScreen.storyboard */; };
+		8A21155122B8FF2F00FDD25B /* TTNorms-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A21154F22B8FF2E00FDD25B /* TTNorms-Medium.otf */; };
+		8A21155222B8FF2F00FDD25B /* TTNorms-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8A21155022B8FF2E00FDD25B /* TTNorms-Bold.otf */; };
+		8AE2FB0322BA3422009BB1F1 /* UIButton + Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0222BA3422009BB1F1 /* UIButton + Custom.swift */; };
+		8AE2FB0522BA34C9009BB1F1 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0422BA34C9009BB1F1 /* Constraints.swift */; };
+		8AE2FB0722BA352A009BB1F1 /* WebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0622BA352A009BB1F1 /* WebImageView.swift */; };
+		8AE2FB0922BA358A009BB1F1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2FB0822BA358A009BB1F1 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		8A21153F22B8F03A00FDD25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A21154222B8F03A00FDD25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A21154422B8F03A00FDD25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A21154F22B8FF2E00FDD25B /* TTNorms-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-Medium.otf"; sourceTree = "<group>"; };
+		8A21155022B8FF2E00FDD25B /* TTNorms-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TTNorms-Bold.otf"; sourceTree = "<group>"; };
+		8AE2FB0222BA3422009BB1F1 /* UIButton + Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Custom.swift"; sourceTree = "<group>"; };
+		8AE2FB0422BA34C9009BB1F1 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
+		8AE2FB0622BA352A009BB1F1 /* WebImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImageView.swift; sourceTree = "<group>"; };
+		8AE2FB0822BA358A009BB1F1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +72,30 @@
 				8A21153F22B8F03A00FDD25B /* Assets.xcassets */,
 				8A21154122B8F03A00FDD25B /* LaunchScreen.storyboard */,
 				8A21154422B8F03A00FDD25B /* Info.plist */,
+				8AE2FB0122BA33F9009BB1F1 /* Helpers */,
 			);
 			path = BoltAPI;
+			sourceTree = "<group>";
+		};
+		8A21154E22B8FF1600FDD25B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8A21155022B8FF2E00FDD25B /* TTNorms-Bold.otf */,
+				8A21154F22B8FF2E00FDD25B /* TTNorms-Medium.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		8AE2FB0122BA33F9009BB1F1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8A21154E22B8FF1600FDD25B /* fonts */,
+				8AE2FB0222BA3422009BB1F1 /* UIButton + Custom.swift */,
+				8AE2FB0422BA34C9009BB1F1 /* Constraints.swift */,
+				8AE2FB0622BA352A009BB1F1 /* WebImageView.swift */,
+				8AE2FB0822BA358A009BB1F1 /* NetworkManager.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A21154322B8F03A00FDD25B /* LaunchScreen.storyboard in Resources */,
+				8A21155222B8FF2F00FDD25B /* TTNorms-Bold.otf in Resources */,
 				8A21154022B8F03A00FDD25B /* Assets.xcassets in Resources */,
+				8A21155122B8FF2F00FDD25B /* TTNorms-Medium.otf in Resources */,
 				8A21153E22B8F03900FDD25B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +172,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A21153B22B8F03900FDD25B /* ViewController.swift in Sources */,
+				8AE2FB0722BA352A009BB1F1 /* WebImageView.swift in Sources */,
+				8AE2FB0922BA358A009BB1F1 /* NetworkManager.swift in Sources */,
+				8AE2FB0522BA34C9009BB1F1 /* Constraints.swift in Sources */,
+				8AE2FB0322BA3422009BB1F1 /* UIButton + Custom.swift in Sources */,
 				8A21153922B8F03900FDD25B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,13 +323,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8F3CLJ592;
+				DEVELOPMENT_TEAM = 4226M9N553;
 				INFOPLIST_FILE = BoltAPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taijased.BoltAPI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taijased.BON;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,13 +341,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C8F3CLJ592;
+				DEVELOPMENT_TEAM = 4226M9N553;
 				INFOPLIST_FILE = BoltAPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.taijased.BoltAPI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.taijased.BON;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
