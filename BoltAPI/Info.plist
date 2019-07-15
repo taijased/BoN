@@ -23,7 +23,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Чтобы фотку болта загрузить!</string>
+	<string>Камера требуется, чтобы загрузить фотку болта или гайки.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>TTNorms-Bold.otf</string>

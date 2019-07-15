@@ -18,13 +18,27 @@ class ViewController: UIViewController, CAAnimationDelegate, StoryboardInitializ
     let networkManager = NetworkManager()
     var hostName: String = "http://92.255.195.45:26005/bon"
     
+    @IBAction func shareSocial(_ sender: UIButton) {
+        
+        let shareText = "Данное, которое распознает болты и гайки. Красным цветом болты, синим гайки."
+        let activityViewController = UIActivityViewController(activityItems: [shareText, self.myImageView], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: view.center.x, y: view.center.y, width: 0, height: 0)
+        activityViewController.popoverPresentationController?.sourceView = view
+        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        
+        activityViewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed:Bool, returnedItems:[Any]?, error: Error?) in if completed {
+            // do something on completion if you want
+            }
+        }
+        present(activityViewController, animated: true, completion: nil)
+    }
     @IBOutlet weak var infoButton: UIButton! {
         didSet {
             infoButton.layer.shadowColor = UIColor.black.cgColor
             infoButton.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             infoButton.layer.shadowRadius = 1.0
             infoButton.layer.shadowOpacity = 0.5
-            infoButton.layer.cornerRadius = 25
+            infoButton.layer.cornerRadius = 18
             infoButton.layer.masksToBounds = false
         }
     }

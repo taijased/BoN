@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -24,22 +23,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rV-Fk-9nn">
-                                <rect key="frame" x="250" y="493" width="50" height="50"/>
+                                <rect key="frame" x="232" y="502" width="36" height="36"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Qo9-hj-rxR"/>
-                                    <constraint firstAttribute="width" constant="50" id="bdr-Up-pg7"/>
+                                    <constraint firstAttribute="height" constant="36" id="Qo9-hj-rxR"/>
+                                    <constraint firstAttribute="width" constant="36" id="bdr-Up-pg7"/>
                                 </constraints>
                                 <state key="normal" image="mark"/>
                                 <connections>
                                     <segue destination="JHb-Qo-OY3" kind="show" id="sAv-LR-sOl"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWh-Lp-xfL">
+                                <rect key="frame" x="272" y="504" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="YTF-Oy-OZS"/>
+                                    <constraint firstAttribute="height" constant="32" id="zZf-sw-st0"/>
+                                </constraints>
+                                <state key="normal" image="share">
+                                    <color key="titleColor" red="0.36470588240000001" green="0.12549019610000001" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="shareSocial:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fUO-rs-UP4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rV-Fk-9nn" secondAttribute="trailing" constant="20" id="eoQ-MC-gah"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2rV-Fk-9nn" secondAttribute="bottom" constant="25" id="woB-OW-JGj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="bWh-Lp-xfL" secondAttribute="bottom" constant="32" id="32B-je-YbL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="bWh-Lp-xfL" secondAttribute="trailing" constant="16" id="OxO-Cb-EDc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2rV-Fk-9nn" secondAttribute="trailing" constant="52" id="eoQ-MC-gah"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2rV-Fk-9nn" secondAttribute="bottom" constant="30" id="woB-OW-JGj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -49,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="118.29085457271366"/>
+            <point key="canvasLocation" x="135" y="117.25352112676056"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="dG5-lg-YpR">
@@ -137,5 +151,6 @@
     <resources>
         <image name="close" width="52.5" height="52.5"/>
         <image name="mark" width="24" height="24"/>
+        <image name="share" width="32" height="32"/>
     </resources>
 </document>
